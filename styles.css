@@ -1,0 +1,43 @@
+body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    color: white;
+}
+
+.container{
+    height: 100%;
+    display: flex;
+}
+
+#toolbar{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    width: 70px;
+    background-color: #202020;
+}
+
+#toolbar * {
+    margin-bottom: 6px;
+}
+
+#toolbar label{
+    font-size: 12px;
+}
+
+#toolbar input{
+    width: 100%;
+}
+
+#toolbar img {
+    margin-left: 10px;
+}
+
+#toolbar button {
+    background-color: red;
+    border: none;
+    color: white;
+    padding: 2px;
+}
