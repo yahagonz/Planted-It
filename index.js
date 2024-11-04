@@ -46,7 +46,7 @@ const draw = e => {
     ctx.lineCap = 'round';
     ctx.lineTo(e.clientX - canvasOffsetX, e.clientY);
     ctx.stroke();
-}
+};
 
 canvas.addEventListener('mousedown',
     e => {
@@ -66,4 +66,4 @@ canvas.addEventListener('mouseup',
     }
 );
 
-canvas.addEventListener('mousemove', draw)
+canvas.addEventListener('mousemove', draw);

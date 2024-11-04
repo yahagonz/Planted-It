@@ -29,6 +29,7 @@ body{
 
 #toolbar input{
     width: 100%;
+    border: none; 
 }
 
 #toolbar img {
