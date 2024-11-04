@@ -3,7 +3,7 @@ body{
     padding: 0;
     height: 100%;
     overflow: hidden;
-    color: white;
+    color: black;
 }
 
 .container{
@@ -16,7 +16,7 @@ body{
     flex-direction: column;
     padding: 5px;
     width: 70px;
-    background-color: #202020;
+    background-color: #DED9E2;
 }
 
 #toolbar * {
@@ -29,6 +29,7 @@ body{
 
 #toolbar input{
     width: 100%;
+    border: none; 
 }
 
 #toolbar img {
