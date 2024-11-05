@@ -9,15 +9,18 @@ const canvasOffsetY = canvas.offsetTop; //0px b/c there's nothing above
 
 canvas.width = window.innerWidth - canvasOffsetX;
 canvas.height = window.innerHeight - canvasOffsetY;
+ctx.lineWidth = 3; //arbitrary number
+ctx.lineCap = 'square'; //crisper corners
 
 let isPainting = false;
 let numPlants = 5;
+var plant = new Image();
 // let startX;
 // let startY;
 
 //TOOLBAR FUNCTIONALITY
-toolbar.addEventListener('click', //type
-    e => { //listener
+toolbar.addEventListener('click', //type (what is it listening for)
+    e => { //listener (function)
         if(e.target.id === 'clear') {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.beginPath(); //closes the previous path
@@ -27,8 +30,16 @@ toolbar.addEventListener('click', //type
 
 toolbar.addEventListener('change',
     e => {
-        if(e.target.id === 'stroke'){
-            ctx.strokeStyle = e.target.value;
+        if(e.target.id === 'plants'){
+            switch (e.target.value){
+                case 'carrot':
+                    plant.src = 'carrot.png';
+                    console.log('carrot');
+                    break;
+                default:
+                    plant.src = 'defaultP.png';
+                    console.log('default');
+            }
         }
         if(e.target.id === 'numPlants'){
             numPlants = e.target.value;
@@ -41,9 +52,8 @@ toolbar.addEventListener('change',
 const draw = e => {
     if(!isPainting){ return; }
 
-    ctx.lineWidth = 3;
-    ctx.lineCap = 'square';
     ctx.lineTo(e.clientX - canvasOffsetX, e.clientY);
+    ctx.drawImage(plant, 100, 100, 25, 25);
     ctx.stroke();
 };
 
@@ -60,9 +70,8 @@ canvas.addEventListener('mouseup',
     e => {
         isPainting = false;
         ctx.stroke(); //to color the line
-        // ctx.beginPath(); //closes the previous path
     }
 );
 
-canvas.addEventListener('mousemove', draw);
-canvas.addEventListener('mousedown', draw);
+canvas.addEventListener('mousemove', draw); //to draw free form lines
+canvas.addEventListener('mousedown', draw); //to create lines with vertices
