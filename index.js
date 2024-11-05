@@ -11,15 +11,16 @@ canvas.width = window.innerWidth - canvasOffsetX;
 canvas.height = window.innerHeight - canvasOffsetY;
 
 let isPainting = false;
-let lineWidth = 5;
-let startX;
-let startY;
+let numPlants = 5;
+// let startX;
+// let startY;
 
 //TOOLBAR FUNCTIONALITY
 toolbar.addEventListener('click', //type
     e => { //listener
         if(e.target.id === 'clear') {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.beginPath(); //closes the previous path
         }
     }
 );
@@ -29,8 +30,8 @@ toolbar.addEventListener('change',
         if(e.target.id === 'stroke'){
             ctx.strokeStyle = e.target.value;
         }
-        if(e.target.id === 'lineWidth'){
-            lineWidth = e.target.value;
+        if(e.target.id === 'numPlants'){
+            numPlants = e.target.value;
         }
     }
 );
@@ -38,32 +39,30 @@ toolbar.addEventListener('change',
 
 //CANVAS FUNCTIONALITY
 const draw = e => {
-    if(!isPainting){
-        return;
-    }
+    if(!isPainting){ return; }
 
-    ctx.lineWidth = lineWidth;
-    ctx.lineCap = 'round';
+    ctx.lineWidth = 3;
+    ctx.lineCap = 'square';
     ctx.lineTo(e.clientX - canvasOffsetX, e.clientY);
     ctx.stroke();
 };
 
+//this shows the path WHILE drawing
 canvas.addEventListener('mousedown',
     e => {
-        console.log('mouse down'); //debug
         isPainting = true;
-        startX = e.clientX;
-        startY = e.clientY;
+        // startX = e.clientX;
+        // startY = e.clientY;
     }
 );
 
 canvas.addEventListener('mouseup',
     e => {
-        console.log('mouse up'); //debug
         isPainting = false;
         ctx.stroke(); //to color the line
-        ctx.beginPath(); //closes the previous path
+        // ctx.beginPath(); //closes the previous path
     }
 );
 
 canvas.addEventListener('mousemove', draw);
+canvas.addEventListener('mousedown', draw);
