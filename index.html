@@ -3,21 +3,30 @@
         <meta charset="UTF-8" content="IE-edge">
         <meta name="viewport" content="width=devide-width, initial-scale=1.0">
         <link rel="stylesheet" href="styles.css">
-        <link rel="icon" type="image/png" href="logo.png"/>
+        <link rel="icon" type="image" href="images/logo.png"/>
         <title>Planted It!</title>
     </head>
     <body>
         <section class="container">
             <div id="toolbar">
                 <label id="logo">Planted It!</label>
-                <img src="logo.png" alt="small plant in dirt" width="50" height="50">
+                <img src="images/logo.png" alt="small plant in dirt" width="50" height="50">
+                
+                <label for="isDrawing">Perimeter Mode</label>
+                <input type="checkbox" id = "isDrawing" checked="true">
                 
                 <label for="plant">Plant</label>
                 <select name="plants" id="plants">
+                    <option value="blackberry">Blackberry</option>
+                    <option value="blueberry">Blueberry</option>
                     <option value="carrot">Carrot</option>
+                    <option value="chokeberry">Chokeberry</option>
                     <option value="jalapeno">Jalapeno</option>
-                    <!-- <option value="carrot">Carrot</option>
-                    <option value="carrot">Carrot</option> -->
+                    <option value="onion">Onion</option>
+                    <option value="raspberry">Raspberry</option>
+                    <option value="spinach">Spinach</option>
+                    <option value="stawberry">Strawberry</option>
+                    <option value="tomato">Tomato</option>
                 </select>
                 
                 <label for="numPlants">Number of Plants</label>
