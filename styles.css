@@ -9,7 +9,6 @@
 #toolbar{
     display: flex;
     flex-direction: column;
-    /* padding: 5px; */
     height: 70px;
     background-color: #DED9E2;
 }
@@ -20,5 +19,10 @@
 }
 
 #titles *{
-    padding-right: 10px;
+    margin-right: 18%;
+}
+
+#tools *{
+    width: 100%;
+    margin-right: 20%;
 }

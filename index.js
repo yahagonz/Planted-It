@@ -4,8 +4,8 @@ const toolbar = document.getElementById('toolbar');
 const ctx = canvas.getContext('2d');
 
 //distance camera has from the view port - helps calculate canvas size
-const canvasOffsetX = canvas.offsetLeft; //70px b/c of toolbar
-const canvasOffsetY = canvas.offsetTop; //0px b/c there's nothing above
+const canvasOffsetX = canvas.offsetLeft; //0px b/c there's nothing beside it
+const canvasOffsetY = canvas.offsetTop; //70px b/c of the toolbar above
 
 canvas.width = window.innerWidth - canvasOffsetX;
 canvas.height = window.innerHeight - canvasOffsetY;
@@ -44,7 +44,7 @@ const draw = e => {
 
     ctx.lineWidth = lineWidth;
     ctx.lineCap = 'round';
-    ctx.lineTo(e.clientX - canvasOffsetX, e.clientY);
+    ctx.lineTo(e.clientX - canvasOffsetX, e.clientY - canvasOffsetY);
     ctx.stroke();
 };
 
