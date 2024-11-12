@@ -1,4 +1,4 @@
-body{
+ body{
     margin: 0;
     padding: 0;
     height: 100%;
@@ -6,39 +6,19 @@ body{
     color: black;
 }
 
-.container{
-    height: 100%;
-    display: flex;
-}
-
 #toolbar{
     display: flex;
     flex-direction: column;
-    padding: 5px;
-    width: 70px;
+    /* padding: 5px; */
+    height: 70px;
     background-color: #DED9E2;
 }
 
-#toolbar * {
-    margin-bottom: 6px;
+#titles, #tools{
+    display: flex;
+    flex-direction: row;
 }
 
-#toolbar label{
-    font-size: 12px;
-}
-
-#toolbar input{
-    width: 100%;
-    border: none; 
-}
-
-#toolbar img {
-    margin-left: 10px;
-}
-
-#toolbar button {
-    background-color: red;
-    border: none;
-    color: white;
-    padding: 2px;
+#titles *{
+    padding-right: 10px;
 }
