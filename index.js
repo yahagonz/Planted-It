@@ -13,10 +13,10 @@ ctx.lineWidth = 3; //arbitrary number
 ctx.lineCap = 'square'; //crisper corners
 
 let isPainting = false;
+let perimeterMode = true;
 let numPlants = 5;
-var plant = new Image();
-// let startX;
-// let startY;
+var plant = new Image(25,25);
+plant.src = 'images/defaultP.png'; //when no plant is selected
 
 //TOOLBAR FUNCTIONALITY
 toolbar.addEventListener('click', //type (what is it listening for)
@@ -33,16 +33,20 @@ toolbar.addEventListener('change',
         if(e.target.id === 'plants'){
             switch (e.target.value){
                 case 'carrot':
-                    plant.src = 'carrot.png';
-                    console.log('carrot');
+                    plant.src = 'images/carrot.png';
+                    console.log('carrot');//debug
                     break;
                 default:
-                    plant.src = 'defaultP.png';
-                    console.log('default');
+                    plant.src = 'images/defaultP.png';
+                    console.log('default');//debug
             }
         }
         if(e.target.id === 'numPlants'){
             numPlants = e.target.value;
+        }
+        if(e.target.id === 'periMode'){
+            perimeterMode = e.target.checked;
+            ctx.beginPath();
         }
     }
 );
@@ -52,17 +56,18 @@ toolbar.addEventListener('change',
 const draw = e => {
     if(!isPainting){ return; }
 
-    ctx.lineTo(e.clientX - canvasOffsetX, e.clientY);
-    ctx.drawImage(plant, 100, 100, 25, 25);
-    ctx.stroke();
+    if(perimeterMode){
+        ctx.lineTo(e.clientX - canvasOffsetX, e.clientY - canvasOffsetY);
+        ctx.stroke();
+    } 
+    else{
+        ctx.drawImage(plant, e.clientX - canvasOffsetX, e.clientY - canvasOffsetY, 25, 25);
+    }
 };
 
-//this shows the path WHILE drawing
 canvas.addEventListener('mousedown',
     e => {
         isPainting = true;
-        // startX = e.clientX;
-        // startY = e.clientY;
     }
 );
 
