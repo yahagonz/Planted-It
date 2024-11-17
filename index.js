@@ -9,28 +9,44 @@ const canvasOffsetY = canvas.offsetTop; //0px b/c there's nothing above
 
 canvas.width = window.innerWidth - canvasOffsetX;
 canvas.height = window.innerHeight - canvasOffsetY;
+ctx.lineWidth = 3; //arbitrary number
+ctx.lineCap = 'square'; //crisper corners
 
 let isPainting = false;
-let lineWidth = 5;
-let startX;
-let startY;
+let perimeterMode = true;
+let numPlants = 5;
+var plant = new Image(25,25);
+plant.src = 'images/defaultP.png'; //when no plant is selected
 
 //TOOLBAR FUNCTIONALITY
-toolbar.addEventListener('click', //type
-    e => { //listener
+toolbar.addEventListener('click', //type (what is it listening for)
+    e => { //listener (function)
         if(e.target.id === 'clear') {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.beginPath(); //closes the previous path
         }
     }
 );
 
 toolbar.addEventListener('change',
     e => {
-        if(e.target.id === 'stroke'){
-            ctx.strokeStyle = e.target.value;
+        if(e.target.id === 'plants'){
+            switch (e.target.value){
+                case 'carrot':
+                    plant.src = 'images/carrot.png';
+                    console.log('carrot');//debug
+                    break;
+                default:
+                    plant.src = 'images/defaultP.png';
+                    console.log('default');//debug
+            }
         }
-        if(e.target.id === 'lineWidth'){
-            lineWidth = e.target.value;
+        if(e.target.id === 'numPlants'){
+            numPlants = e.target.value;
+        }
+        if(e.target.id === 'periMode'){
+            perimeterMode = e.target.checked;
+            ctx.beginPath();
         }
     }
 );
@@ -38,32 +54,29 @@ toolbar.addEventListener('change',
 
 //CANVAS FUNCTIONALITY
 const draw = e => {
-    if(!isPainting){
-        return;
-    }
+    if(!isPainting){ return; }
 
-    ctx.lineWidth = lineWidth;
-    ctx.lineCap = 'round';
-    ctx.lineTo(e.clientX - canvasOffsetX, e.clientY);
-    ctx.stroke();
+    if(perimeterMode){
+        ctx.lineTo(e.clientX - canvasOffsetX, e.clientY - canvasOffsetY);
+        ctx.stroke();
+    } 
+    else{
+        ctx.drawImage(plant, e.clientX - canvasOffsetX, e.clientY - canvasOffsetY, 25, 25);
+    }
 };
 
 canvas.addEventListener('mousedown',
     e => {
-        console.log('mouse down'); //debug
         isPainting = true;
-        startX = e.clientX;
-        startY = e.clientY;
     }
 );
 
 canvas.addEventListener('mouseup',
     e => {
-        console.log('mouse up'); //debug
         isPainting = false;
         ctx.stroke(); //to color the line
-        ctx.beginPath(); //closes the previous path
     }
 );
 
-canvas.addEventListener('mousemove', draw);
+canvas.addEventListener('mousemove', draw); //to draw free form lines
+canvas.addEventListener('mousedown', draw); //to create lines with vertices
