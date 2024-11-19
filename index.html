@@ -7,39 +7,42 @@
         <title>Planted It!</title>
     </head>
     <body>
-        <section class="container">
-            <div id="toolbar">
-                <label id="logo">Planted It!</label>
-                <img src="images/logo.png" alt="small plant in dirt" width="50" height="50">
-                
-                <label for="periMode">Perimeter Mode</label>
-                <input type="checkbox" id = "periMode" checked="true">
-                
-                <label for="plant">Plant</label>
-                <select name="plants" id="plants">
-                    <option value="default">Pick a plant...</option>
-                    <option value="blackberry">Blackberry</option>
-                    <option value="blueberry">Blueberry</option>
-                    <option value="carrot">Carrot</option>
-                    <option value="chokeberry">Chokeberry</option>
-                    <option value="jalapeno">Jalapeno</option>
-                    <option value="onion">Onion</option>
-                    <option value="raspberry">Raspberry</option>
-                    <option value="spinach">Spinach</option>
-                    <option value="stawberry">Strawberry</option>
-                    <option value="tomato">Tomato</option>
-                </select>
-                
-                <label for="numPlants">Number of Plants</label>
-                <input id="numPlants" name='numPlants' type="number" value="5">
-
-                <button id="clear">Clear</button>
+        <div class="app">
+            <div class="toolbar">
+                <div class="item-1">
+                    <label id="logo">Planted It!</label>
+                    <img src="images/logo.png" alt="small plant in dirt" width="50" height="50">
+                </div>
+                <div class="item-2">
+                    <label for="periMode">Perimeter Mode</label>
+                    <input type="checkbox" id = "periMode" checked="true">
+                </div>
+                <div class="item-3">
+                    <label for="plant">Plant</label>
+                    <select name="plants" id="plants">
+                        <option value="default">Pick a plant...</option>
+                        <option value="blackberry">Blackberry</option>
+                        <option value="blueberry">Blueberry</option>
+                        <option value="carrot">Carrot</option>
+                        <option value="chokeberry">Chokeberry</option>
+                        <option value="jalapeno">Jalapeno</option>
+                        <option value="onion">Onion</option>
+                        <option value="raspberry">Raspberry</option>
+                        <option value="spinach">Spinach</option>
+                        <option value="stawberry">Strawberry</option>
+                        <option value="tomato">Tomato</option>
+                    </select>
+                </div>
+                <div class="item-4">
+                    <button id="clear">Clear</button>
+                </div>
+                <div class="item-5">
+                </div>
             </div>
-
             <div class="drawing-board">
                 <canvas id="drawing-board"></canvas>
             </div>
-        </section>
+        </div>
         <script src="./index.js"></script>
     </body>
 </html>
